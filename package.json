@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "prestart": "grunt",
+    "start": "node ./bin/www",
+    "predev": "grunt",
+    "dev": "grunt watch & nodemon --verbose"
   },
   "dependencies": {
     "aws-sdk": "^2.171.0",
@@ -29,5 +32,16 @@
     "grunt-contrib-uglify": "^3.2.1",
     "grunt-contrib-watch": "^1.0.0",
     "nodemon": "^1.13.3"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "public/*",
+      "gruntfile.js",
+      "scratch/"
+    ],
+    "events": {
+      "restart": "osascript -e 'display notification \"App restarted due to changes\" with title \"the-nomad.com\"'"
+    },
+    "delay": "100"
   }
 }
